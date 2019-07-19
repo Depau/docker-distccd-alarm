@@ -10,7 +10,8 @@ RUN apk --update add distcc wget tar xz libstdc++6 flex-libs && \
     apk del wget tar xz
 
 USER distcc
-ENV PATH="/x-tools7h/$toolchain/bin:usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+ENV PATH="/x-tools7h/$toolchain/bin:usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" \
+    LD_LIBRARY_PATH="/usr/lib/gcc/x86_64-alpine-linux-musl/6.4.0"
 EXPOSE 3636/tcp
 
 ENTRYPOINT ["/usr/bin/distccd", "--no-detach", "--daemon"]
